@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+        <tab id="lphilippo" sortOrder="400">
+            <label>`Lphilippo` Modules</label>
+        </tab>
+
+        <section id="lphilippo_slack_logging" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Slack Logging</label>
+            <tab>lphilippo</tab>
+            <resource>Lphilippo_SlackLogging::lphilippo_slackLogging</resource>
+            <group id="settings" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Settings</label>
+                <field canRestore="1" id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Select <b>Yes</b> to enable this module]]></comment>
+                </field>
+                <field canRestore="1" id="log_level" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Log Level</label>
+                    <source_model>Lphilippo\SlackLogging\Model\Config\Source\LogLevel</source_model>
+                    <comment><![CDATA[Select <b>log level</b> from which messages will be sent to Slack]]></comment>
+                </field>
+                <field canRestore="1" id="webhook_url" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Webhook URL</label>
+                </field>
+            </group>
+            <group id="ignore" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Ignored Exceptions</label>
+                <field canRestore="1" id="cache_purging" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cache Purging</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[For example, `Unable to resolve the source file for '...'`]]></comment>
+                </field>
+                <field canRestore="1" id="gather_file_stats" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Gather File Stats</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[For example, `Cannot gather stats! Warning!stat(): stat failed for`]]></comment>
+                </field>
+                <field canRestore="1" id="source_file_resolving" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Source File Resolving</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[For example, `No cache server(s) could be purged`]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <lphilippo_slack_logging>
+            <settings>
+                <enabled>0</enabled>
+                <log_level>500</log_level>
+                <webhook_url></webhook_url>
+            </settings>
+            <ignore>
+                <cache_purging>1</cache_purging>
+                <gather_file_stats>1</gather_file_stats>
+                <source_file_resolving>1</source_file_resolving>
+            </ignore>
+        </lphilippo_slack_logging>
+    </default>
+</config>
