@@ -3,7 +3,7 @@
 namespace Lphilippo\SlackLogging\Plugin;
 
 use Lphilippo\SlackLogging\Model\Logger\Handler\Slack;
-use Magento\Framework\Logger\Monolog;
+use Monolog\Logger;
 
 class AddSlackHandler
 {
@@ -24,11 +24,11 @@ class AddSlackHandler
     /**
      * @param Monolog $monolog
      *
-     * @return Monolog
+     * @return Logger
      */
     public function afterSetHandlers(
-        Monolog $monolog
-    ): Monolog {
+        Logger $monolog
+    ): Logger {
         $monolog->pushHandler(
             $this->slackHandler
         );
