@@ -10,6 +10,7 @@ class EligibilityHelper extends AbstractHelper
 {
     protected $ignorePatterns = [
         'cache_purging' => '/No cache server\(s\) could be purged/i',
+        'empty_less_compilation' => '/Compilation from source: LESS file is empty/i',
         'gather_file_stats' => "/FileSystemException: Cannot gather stats! Warning!stat\(\): stat failed for /i",
         'source_file_resolving' => '/Unable to resolve the source file for \'(.*)\'/i',
     ];
@@ -44,6 +45,12 @@ class EligibilityHelper extends AbstractHelper
         if (
             $this->config->ignoreSourceFileResolving() &&
             $this->messageMatchesFor($message, 'source_file_resolving')) {
+            return true;
+        }
+
+        if (
+            $this->config->ignoreEmptyLessCompilation() &&
+            $this->messageMatchesFor($message, 'empty_less_compilation')) {
             return true;
         }
 

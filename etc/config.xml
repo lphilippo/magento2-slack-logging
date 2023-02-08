@@ -9,6 +9,7 @@
             </settings>
             <ignore>
                 <cache_purging>1</cache_purging>
+                <empty_less_compilation>1</empty_less_compilation>
                 <gather_file_stats>1</gather_file_stats>
                 <source_file_resolving>1</source_file_resolving>
             </ignore>

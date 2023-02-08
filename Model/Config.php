@@ -13,6 +13,7 @@ class Config
     public const PATH_WEBHOOK_URL = 'settings/webhook_url';
 
     public const PATH_IGNORE_CACHE_PURGING = 'ignore/cache_purging';
+    public const PATH_IGNORE_EMPTY_LESS_COMPILATION = 'ignore/empty_less_compilation';
     public const PATH_IGNORE_GATHER_FILE_STATS = 'ignore/gather_file_stats';
     public const PATH_IGNORE_SOURCE_FILE_RESOLVING = 'ignore/source_file_resolving';
 
@@ -46,6 +47,14 @@ class Config
     public function ignoreCachePurging(): bool
     {
         return (bool) $this->getValue(self::PATH_IGNORE_CACHE_PURGING);
+    }
+
+    /**
+     * @return bool
+     */
+    public function ignoreEmptyLessCompilation(): bool
+    {
+        return (bool) $this->getValue(self::PATH_IGNORE_EMPTY_LESS_COMPILATION);
     }
 
     /**
