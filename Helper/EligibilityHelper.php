@@ -34,6 +34,28 @@ class EligibilityHelper extends AbstractHelper
     }
 
     /**
+     * Return the patterns that will be used to determine eligibility.
+     *
+     * @return array
+     */
+    public function getIgnoreExceptionPatterns(): array
+    {
+        $patterns = [];
+
+        foreach ($this->ignorePatterns as $key => $pattern) {
+            $methodName = 'ignore' . str_replace('_', '', ucwords($key, '_'));
+
+            if (!$this->config->$methodName()) {
+                continue;
+            }
+
+            $patterns[$key] = $pattern;
+        }
+
+        return $patterns;
+    }
+
+    /**
      * @param array $record
      *
      * @return bool
@@ -41,50 +63,12 @@ class EligibilityHelper extends AbstractHelper
     public function canRecordBeIgnored(array $record): bool
     {
         $message = $record['message'];
+        $patterns = $this->getIgnoreExceptionPatterns();
 
-        if (
-            $this->config->ignoreSourceFileResolving() &&
-            $this->messageMatchesFor($message, 'source_file_resolving')) {
-            return true;
-        }
-
-        if (
-            $this->config->ignoreEmptyLessCompilation() &&
-            $this->messageMatchesFor($message, 'empty_less_compilation')) {
-            return true;
-        }
-
-        if (
-            $this->config->ignoreCachePurging() &&
-            $this->messageMatchesFor($message, 'cache_purging')) {
-            return true;
-        }
-
-        if (
-            $this->config->ignoreGatherFileStats() &&
-            $this->messageMatchesFor($message, 'gather_file_stats')) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @param string $message
-     * @param string $type
-     *
-     * @return bool
-     */
-    protected function messageMatchesFor(string $message, string $type): bool
-    {
-        if (!array_key_exists($type, $this->ignorePatterns)) {
-            return false;
-        }
-
-        $pattern = $this->ignorePatterns[$type];
-
-        if (preg_match($pattern, $message)) {
-            return true;
+        foreach ($patterns as $pattern) {
+            if (preg_match($pattern, $message)) {
+                return true;
+            }
         }
 
         return false;

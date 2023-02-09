@@ -17,6 +17,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 **Removed**
 
 
+## [1.0.2] - 2023-02-09
+
+**Added**
+
+* New addition rule.
+
+**Changed**
+
+* Rework the way ignore patterns are called, to allow extension through plugin.
+
+
+## [1.0.1] - 2023-02-03
+
+**Added**
+
+* New addition rule.
+
+
 ## [1.0.0] - 2023-01-01
 
 Initial release.
