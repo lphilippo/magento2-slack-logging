@@ -50,10 +50,6 @@ class Slack extends SlackWebhookHandler
       */
     protected function write(array $record): void
     {
-        if ($this->config->isDisabled()) {
-            return;
-        }
-
         if ($this->eligibilityHelper->canRecordBeIgnored($record)) {
             return;
         }
