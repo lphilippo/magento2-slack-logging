@@ -40,7 +40,7 @@ class Slack extends SlackWebhookHandler
             true,
             null,
             true,
-            false,
+            true,
             $this->config->getLogLevel()
         );
     }
@@ -58,7 +58,23 @@ class Slack extends SlackWebhookHandler
             return;
         }
 
+        $record['extra'] = [];
+        $record['context'] = $this->getContext();
+
         parent::write($record);
+    }
+
+    /**
+     * @return array
+     */
+    protected function getContext(): array
+    {
+        return array_filter([
+            'command' => array_key_exists('argv', $_SERVER) ? implode(' ', $_SERVER['argv']) : null,
+            'host' => array_key_exists('HTTP_HOST', $_SERVER) ? $_SERVER['HTTP_HOST'] : null,
+            'method' => array_key_exists('REQUEST_METHOD', $_SERVER) ? $_SERVER['REQUEST_METHOD'] : null,
+            'uri' => array_key_exists('REQUEST_URI', $_SERVER) ? $_SERVER['REQUEST_URI'] : null,
+        ]);
     }
 
     /**
