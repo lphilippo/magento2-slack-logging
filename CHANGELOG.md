@@ -17,6 +17,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 **Removed**
 
 
+## [1.0.3] - 2023-03-01
+
+**Added**
+
+* Add context to provide more information for debugging.
+
+
 ## [1.0.2] - 2023-02-09
 
 **Added**

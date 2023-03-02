@@ -8,6 +8,7 @@ class Config
 {
     public const PATH_PREFIX = 'lphilippo_slack_logging';
 
+    public const PATH_INCLUDE_CONTEXT = 'settings/include_context';
     public const PATH_IS_ENABLED = 'settings/enabled';
     public const PATH_LOG_LEVEL = 'settings/log_level';
     public const PATH_WEBHOOK_URL = 'settings/webhook_url';
@@ -71,6 +72,14 @@ class Config
     public function ignoreSourceFileResolving(): bool
     {
         return (bool) $this->getValue(self::PATH_IGNORE_SOURCE_FILE_RESOLVING);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isContextIncluded(): bool
+    {
+        return (bool) $this->getValue(self::PATH_INCLUDE_CONTEXT);
     }
 
     /**

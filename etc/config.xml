@@ -6,6 +6,7 @@
                 <enabled>0</enabled>
                 <log_level>500</log_level>
                 <webhook_url></webhook_url>
+                <include_context>1</include_context>
             </settings>
             <ignore>
                 <cache_purging>1</cache_purging>

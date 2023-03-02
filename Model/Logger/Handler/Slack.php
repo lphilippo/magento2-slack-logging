@@ -58,8 +58,10 @@ class Slack extends SlackWebhookHandler
             return;
         }
 
-        $record['extra'] = [];
-        $record['context'] = $this->getContext();
+        if ($this->config->isContextIncluded()) {
+            $record['extra'] = [];
+            $record['context'] = $this->getContext();
+        }
 
         parent::write($record);
     }
