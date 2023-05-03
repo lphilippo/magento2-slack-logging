@@ -17,6 +17,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 **Removed**
 
 
+## [1.0.4] - 2023-05-03
+
+**Changed**
+
+* Adjust formatter to always keep stacktrace.
+
+
 ## [1.0.3] - 2023-03-01
 
 **Added**
