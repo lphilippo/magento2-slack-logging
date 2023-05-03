@@ -38,13 +38,11 @@ class AddSlackHandler
     public function afterSetHandlers(
         Logger $monolog
     ): Logger {
-        if ($this->config->isDisabled()) {
-            return;
+        if (!$this->config->isDisabled()) {
+            $monolog->pushHandler(
+                $this->slackHandler
+            );
         }
-
-        $monolog->pushHandler(
-            $this->slackHandler
-        );
 
         return $monolog;
     }
