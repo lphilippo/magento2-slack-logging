@@ -5,6 +5,8 @@ namespace Lphilippo\SlackLogging\Model\Logger\Handler;
 use Lphilippo\SlackLogging\Helper\EligibilityHelper;
 use Lphilippo\SlackLogging\Model\Config;
 use Magento\Framework\App\State as AppState;
+use Monolog\Formatter\FormatterInterface;
+use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\SlackWebhookHandler as SlackWebhookHandler;
 
 class Slack extends SlackWebhookHandler
@@ -42,6 +44,13 @@ class Slack extends SlackWebhookHandler
             true,
             true,
             $this->config->getLogLevel()
+        );
+    }
+
+    public function setFormatter(FormatterInterface $formatter): HandlerInterface
+    {
+        return parent::setFormatter(
+            $formatter->includeStacktraces(true)
         );
     }
 
