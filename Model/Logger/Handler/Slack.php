@@ -12,6 +12,11 @@ use Monolog\Handler\SlackWebhookHandler as SlackWebhookHandler;
 class Slack extends SlackWebhookHandler
 {
     /**
+     * @var AppState
+     */
+    protected $appState;
+
+    /**
      * @var Config
      */
     protected $config;
@@ -54,9 +59,9 @@ class Slack extends SlackWebhookHandler
         );
     }
 
-     /**
-      * {@inheritdoc}
-      */
+    /**
+     * {@inheritdoc}
+     */
     protected function write(array $record): void
     {
         if ($this->eligibilityHelper->canRecordBeIgnored($record)) {
@@ -74,7 +79,7 @@ class Slack extends SlackWebhookHandler
     /**
      * @return array
      */
-    protected function getContext(): array
+    public function getContext(): array
     {
         return array_filter([
             'command' => array_key_exists('argv', $_SERVER) ? implode(' ', $_SERVER['argv']) : null,
