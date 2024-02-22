@@ -17,6 +17,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 **Removed**
 
 
+## [1.0.6] - 2023-05-03
+
+**Changed**
+
+* Expose client ID in context.
+* Some cleanup now that PHP8 is targeted.
+
+
+
 ## [1.0.4] - 2023-05-03
 
 **Changed**

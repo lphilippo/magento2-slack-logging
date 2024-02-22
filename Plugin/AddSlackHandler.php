@@ -9,25 +9,13 @@ use Monolog\Logger;
 class AddSlackHandler
 {
     /**
-     * @var Config
-     */
-    protected $config;
-
-    /**
-     * @var Slack
-     */
-    protected $slackHandler;
-
-    /**
      * @param Config $config
      * @param Slack $slackHandler
      */
     public function __construct(
-        Config $config,
-        Slack $slackHandler
+        protected Config $config,
+        protected Slack $slackHandler
     ) {
-        $this->config = $config;
-        $this->slackHandler = $slackHandler;
     }
 
     /**

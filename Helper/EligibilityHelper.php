@@ -16,19 +16,13 @@ class EligibilityHelper extends AbstractHelper
     ];
 
     /**
-     * @var Config
-     */
-    private $config;
-
-    /**
      * @param Config $config
      * @param Context $context
      */
     public function __construct(
-        Config $config,
+        private Config $config,
         Context $context
     ) {
-        $this->config = $config;
 
         parent::__construct($context);
     }

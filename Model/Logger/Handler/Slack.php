@@ -8,38 +8,22 @@ use Magento\Framework\App\State as AppState;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\SlackWebhookHandler as SlackWebhookHandler;
+use Magento\Framework\App\RequestInterface;
 
 class Slack extends SlackWebhookHandler
 {
     /**
-     * @var AppState
-     */
-    protected $appState;
-
-    /**
-     * @var Config
-     */
-    protected $config;
-
-    /**
-     * @var EligibilityHelper
-     */
-    protected $eligibilityHelper;
-
-    /**
      * @param AppState $appState
      * @param Config $config
      * @param EligibilityHelper $eligibilityHelper
+     * @param RequestInterface $request
      */
     public function __construct(
-        AppState $appState,
-        Config $config,
-        EligibilityHelper $eligibilityHelper
+        protected AppState $appState,
+        protected Config $config,
+        protected EligibilityHelper $eligibilityHelper,
+        protected RequestInterface $request
     ) {
-        $this->appState = $appState;
-        $this->config = $config;
-        $this->eligibilityHelper = $eligibilityHelper;
-
         parent::__construct(
             $this->config->getWebhookUrl(),
             null,
@@ -82,10 +66,11 @@ class Slack extends SlackWebhookHandler
     public function getContext(): array
     {
         return array_filter([
+            'client_ip' => $this->request->getClientIp(),
             'command' => array_key_exists('argv', $_SERVER) ? implode(' ', $_SERVER['argv']) : null,
-            'host' => array_key_exists('HTTP_HOST', $_SERVER) ? $_SERVER['HTTP_HOST'] : null,
+            'host' => $this->request->getHttpHost(),
             'method' => array_key_exists('REQUEST_METHOD', $_SERVER) ? $_SERVER['REQUEST_METHOD'] : null,
-            'uri' => array_key_exists('REQUEST_URI', $_SERVER) ? $_SERVER['REQUEST_URI'] : null,
+            'uri' => $this->request->getRequestUri(),
         ]);
     }
 

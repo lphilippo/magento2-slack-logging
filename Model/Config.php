@@ -19,17 +19,11 @@ class Config
     public const PATH_IGNORE_SOURCE_FILE_RESOLVING = 'ignore/source_file_resolving';
 
     /**
-     * @var ScopeConfigInterface
-     */
-    private $scopeConfig;
-
-    /**
      * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        ScopeConfigInterface $scopeConfig
+        private ScopeConfigInterface $scopeConfig
     ) {
-        $this->scopeConfig = $scopeConfig;
     }
 
      /**
