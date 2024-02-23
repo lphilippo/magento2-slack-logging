@@ -17,7 +17,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 **Removed**
 
 
-## [1.0.6] - 2023-05-03
+## [1.0.7] - 2024-02-23
+
+**Changed**
+
+* Allow service name to be used as user, to differentiate between environments easily.
+
+
+## [1.0.6] - 2023-02-21
 
 **Changed**
 

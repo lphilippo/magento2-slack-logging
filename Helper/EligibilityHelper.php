@@ -6,7 +6,7 @@ use Lphilippo\SlackLogging\Model\Config;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 
-class EligibilityHelper extends AbstractHelper
+final class EligibilityHelper extends AbstractHelper
 {
     protected $ignorePatterns = [
         'cache_purging' => '/No cache server\(s\) could be purged/i',

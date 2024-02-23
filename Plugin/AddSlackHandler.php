@@ -6,7 +6,7 @@ use Lphilippo\SlackLogging\Model\Config;
 use Lphilippo\SlackLogging\Model\Logger\Handler\Slack;
 use Monolog\Logger;
 
-class AddSlackHandler
+final class AddSlackHandler
 {
     /**
      * @param Config $config

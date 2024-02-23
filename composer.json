@@ -7,7 +7,7 @@
         "AFL-3.0"
     ],
     "minimum-stability": "dev",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "autoload": {
         "files": [ "registration.php" ],
         "psr-4": {

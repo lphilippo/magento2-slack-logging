@@ -4,6 +4,7 @@
         <lphilippo_slack_logging>
             <settings>
                 <enabled>0</enabled>
+                <service_name></service_name>
                 <log_level>500</log_level>
                 <webhook_url></webhook_url>
                 <include_context>1</include_context>

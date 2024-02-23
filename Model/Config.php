@@ -3,14 +3,16 @@
 namespace Lphilippo\SlackLogging\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\State as AppState;
 
-class Config
+final class Config
 {
     public const PATH_PREFIX = 'lphilippo_slack_logging';
 
     public const PATH_INCLUDE_CONTEXT = 'settings/include_context';
     public const PATH_IS_ENABLED = 'settings/enabled';
     public const PATH_LOG_LEVEL = 'settings/log_level';
+    public const PATH_SERVICE_NAME = 'settings/service_name';
     public const PATH_WEBHOOK_URL = 'settings/webhook_url';
 
     public const PATH_IGNORE_CACHE_PURGING = 'ignore/cache_purging';
@@ -19,18 +21,39 @@ class Config
     public const PATH_IGNORE_SOURCE_FILE_RESOLVING = 'ignore/source_file_resolving';
 
     /**
+     * @param AppState $appState
      * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
+        protected AppState $appState,
         private ScopeConfigInterface $scopeConfig
     ) {
     }
 
-     /**
-      * @param string $path
-      *
-      * @return mixed
-      */
+    /**
+     * @return string
+     */
+    public function getServiceName(): string
+    {
+        $serviceName = $this->getValue(self::PATH_SERVICE_NAME);
+
+        if ($serviceName) {
+            return $serviceName;
+        }
+
+        if ($this->appState->getMode() === AppState::MODE_DEVELOPER) {
+            return 'Developer Mode';
+        } elseif ($this->appState->getMode() === AppState::MODE_DEFAULT) {
+            return 'Default Mode';
+        }
+        return 'Production Mode';
+    }
+
+    /**
+     * @param string $path
+     *
+     * @return mixed
+     */
     protected function getValue(string $path)
     {
         return $this->scopeConfig->getValue(self::PATH_PREFIX . '/' . $path);
@@ -60,9 +83,9 @@ class Config
         return (bool) $this->getValue(self::PATH_IGNORE_GATHER_FILE_STATS);
     }
 
-     /**
-      * @return bool
-      */
+    /**
+     * @return bool
+     */
     public function ignoreSourceFileResolving(): bool
     {
         return (bool) $this->getValue(self::PATH_IGNORE_SOURCE_FILE_RESOLVING);

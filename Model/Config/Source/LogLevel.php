@@ -5,7 +5,7 @@ namespace Lphilippo\SlackLogging\Model\Config\Source;
 use Magento\Framework\Data\OptionSourceInterface;
 use Monolog\Logger;
 
-class LogLevel implements OptionSourceInterface
+final class LogLevel implements OptionSourceInterface
 {
     /**
      * @return array
