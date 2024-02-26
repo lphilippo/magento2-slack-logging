@@ -9,7 +9,7 @@ use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\SlackWebhookHandler as SlackWebhookHandler;
 use Magento\Framework\App\RequestInterface;
 
-class Slack extends SlackWebhookHandler
+final class Slack extends SlackWebhookHandler
 {
     /**
      * @param Config $config
