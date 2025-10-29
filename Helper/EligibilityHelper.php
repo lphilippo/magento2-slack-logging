@@ -5,6 +5,7 @@ namespace Lphilippo\SlackLogging\Helper;
 use Lphilippo\SlackLogging\Model\Config;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
+use Monolog\LogRecord;
 
 class EligibilityHelper extends AbstractHelper
 {
@@ -54,7 +55,7 @@ class EligibilityHelper extends AbstractHelper
      *
      * @return bool
      */
-    public function canRecordBeIgnored(array $record): bool
+    public function canRecordBeIgnored(LogRecord $record): bool
     {
         $message = $record['message'];
         $patterns = $this->getIgnoreExceptionPatterns();

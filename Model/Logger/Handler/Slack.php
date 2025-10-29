@@ -8,6 +8,8 @@ use Monolog\Formatter\FormatterInterface;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\SlackWebhookHandler as SlackWebhookHandler;
 use Magento\Framework\App\RequestInterface;
+use Monolog\Formatter\LineFormatter;
+use Monolog\LogRecord;
 
 final class Slack extends SlackWebhookHandler
 {
@@ -38,15 +40,17 @@ final class Slack extends SlackWebhookHandler
 
     public function setFormatter(FormatterInterface $formatter): HandlerInterface
     {
-        return parent::setFormatter(
-            $formatter->includeStacktraces(true)
-        );
+        if ($formatter instanceof LineFormatter) {
+            $formatter->includeStacktraces(true);
+        }
+
+        return parent::setFormatter($formatter);
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function write(array $record): void
+    protected function write(LogRecord $record): void
     {
         if ($this->eligibilityHelper->canRecordBeIgnored($record)) {
             return;

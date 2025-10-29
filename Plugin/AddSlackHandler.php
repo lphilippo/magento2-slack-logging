@@ -19,7 +19,7 @@ final class AddSlackHandler
     }
 
     /**
-     * @param Monolog $monolog
+     * @param Logger $monolog
      *
      * @return Logger
      */

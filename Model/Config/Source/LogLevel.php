@@ -3,6 +3,7 @@
 namespace Lphilippo\SlackLogging\Model\Config\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
+use Monolog\Level;
 use Monolog\Logger;
 
 final class LogLevel implements OptionSourceInterface
@@ -15,31 +16,31 @@ final class LogLevel implements OptionSourceInterface
         return [
             [
                 'label' => __('Info'),
-                'value' => Logger::INFO,
+                'value' => Level::Info,
             ],
             [
                 'label' => __('Notice'),
-                'value' => Logger::NOTICE,
+                'value' => Level::Notice,
             ],
             [
                 'label' => __('Warning'),
-                'value' => Logger::WARNING,
+                'value' => Level::Warning,
             ],
             [
                 'label' => __('Error'),
-                'value' => Logger::ERROR,
+                'value' => Level::Error,
             ],
             [
                 'label' => __('Critical'),
-                'value' => Logger::CRITICAL,
+                'value' => Level::Critical,
             ],
             [
                 'label' => __('Alert'),
-                'value' => Logger::ALERT,
+                'value' => Level::Alert,
             ],
             [
                 'label' => __('Emergency'),
-                'value' => Logger::EMERGENCY,
+                'value' => Level::Emergency,
             ],
         ];
     }

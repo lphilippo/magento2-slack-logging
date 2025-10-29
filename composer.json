@@ -7,6 +7,9 @@
         "AFL-3.0"
     ],
     "minimum-stability": "dev",
+    "require": {
+        "monolog/monolog": "3.9.0"
+    },
     "version": "1.0.7",
     "autoload": {
         "files": [ "registration.php" ],
